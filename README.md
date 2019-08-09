@@ -1,6 +1,6 @@
 # LogCrawler
 
-##Usage: 
+## Usage: 
 `logcrawler <search - path>[ <search - path> ...][<options>]`
 
 scans the specified search paths and archives it finds on its way recursively for files matching a certain regex. Those files can be copied to a folder or searched for a combination of search strings. In this case only those lines with unique timestamps are copied to the output file.
