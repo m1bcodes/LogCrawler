@@ -1,6 +1,6 @@
 # LogCrawler
 
-## Usage: 
+## Usage
 `logcrawler <search - path>[ <search - path> ...][<options>]`
 
 scans the specified search paths and archives it finds on its way recursively for files matching a certain regex. Those files can be copied to a folder or searched for a combination of search strings. In this case only those lines with unique timestamps are copied to the output file.
@@ -54,3 +54,10 @@ If the option -l is specified a file filelist.txt is created in the target folde
 ###Search mode
 
 If a search string is specified, the files are searched for lines matching the search criteria and written to the output file. If no output file option is specified, it is written to console output.
+
+## ToDo
+- In Search Mode only the timestamp decides if a line is a duplicate and skipped. The right way would be to only skip real duplicates (based on text) and also remember the sequence of lines, which have identical timecodes.
+- Make use of multi-threading (for instance on file level)
+- Provide makefile for compile on linux.
+- Add support for other archive formats.
+- Make timestamp format configurable.
