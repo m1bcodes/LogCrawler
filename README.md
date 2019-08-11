@@ -1,11 +1,11 @@
 # LogCrawler
 
-##Usage: 
+## Usage
 `logcrawler <search - path>[ <search - path> ...][<options>]`
 
 scans the specified search paths and archives it finds on its way recursively for files matching a certain regex. Those files can be copied to a folder or searched for a combination of search strings. In this case only those lines with unique timestamps are copied to the output file.
 
-##available options:
+## available options:
 ```
   -h [ --help ]                         produce help message
   -p [ --search-path ] arg              search path. Can be a single file,
@@ -36,21 +36,28 @@ scans the specified search paths and archives it finds on its way recursively fo
                                         name is given.
 ```
 
-##Examples:
+## Examples:
 
-###Extraction mode
+### Extraction mode
 
 `logarchive c:\logfiles c:\logarchive.zip -f "Log.*\.txt" "Log*.old" -e c:\temp`
 
 Scans the folder `c:\logfiles` and the archive `c:\logarchive.zip` for files `Log*.txt` and `Log*.old`.
 All files found are copied to `c:\temp\*.*`. Duplicate files are skipped, files with the same name but different content (as determined by a checksum) are renamed according to the scheme `<filename>_<n>.<ext>`, with n counting from one upwards.
 
-####filelist.txt:
+#### filelist.txt:
 
 If the option -l is specified a file filelist.txt is created in the target folder which allows to identify the source location of each file found. The format of the file follows the following example:
 
 `"Logfile_56.txt","\\?\c:\logfiles\logarchive.zip\C:/Log/Logfile.txt"`
 
-###Search mode
+### Search mode
 
 If a search string is specified, the files are searched for lines matching the search criteria and written to the output file. If no output file option is specified, it is written to console output.
+
+## ToDo
+- In Search Mode only the timestamp decides if a line is a duplicate and skipped. The right way would be to only skip real duplicates (based on text) and also remember the sequence of lines, which have identical timecodes.
+- Make use of multi-threading (for instance on file level)
+- Provide makefile for compile on linux.
+- Add support for other archive formats.
+- Make timestamp format configurable.
